@@ -33,7 +33,8 @@ export default function SwipeDeck({ movies }: { movies: Movie[] }) {
   const currentMovie = movies[currentIndex];
 
   if (!currentMovie) {
-    return <div>No more movies!</div>;
+    return <div className="text-6xl text-orange-300 font-semibold min-h-screen flex 
+    items-center justify-center">No more movies!</div>;
   }
 
   return (
@@ -76,6 +77,10 @@ export default function SwipeDeck({ movies }: { movies: Movie[] }) {
             <button onClick={() => handleSwipe("right")}
               className="px-4 py-2 bg-blue-500 text-white rounded-xl shadow-md hover:bg-blue-600 transition"
               >👍 Like</button>
+          </div>
+          <div>
+            <p className="text-sm text-grey-600 text-justify mt-1">{currentMovie.overview}</p>
+            <p className="text-sm font-semibold mt-1">⭐ {currentMovie.vote_average.toFixed(1)}</p>
           </div>
         </motion.div>
       </AnimatePresence>

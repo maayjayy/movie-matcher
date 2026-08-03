@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #7792e8;
+  /* background-image: url("image.jpg"); */
+  /* background: linear-gradient(to right, blue, purple); */
 }
 
 @theme inline {
