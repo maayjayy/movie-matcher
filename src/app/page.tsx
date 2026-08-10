@@ -1,37 +1,33 @@
-//server component : fetches data
+// home page, create a room button that calls createRoom(), gets back roomId, redirects browser to /room/{roomId}
+// redirect() from next.js from next/navigation
 
-import type { Movie } from "./types";
-import SwipeDeck from "./SwipeDeck";
+"use client";
 
-export default async function Home() {
-  const apiKey = process.env.TMDB_API_KEY;
-  const pageNumbers = Array.from({ length: 4 }, () => Math.floor(Math.random() * 40) + 1);
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { createRoom } from "@/app/lib/rooms";
 
-  const responses = await Promise.all(
-    pageNumbers.map((page) => 
-      fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`,
-      { cache: "no-store" }
-      )
-    )
+export default function Home() {
+  const router = useRouter();
+  const [isCreating, setIsCreating] = useState(false);
+
+  const handleCreateRoom = async () => {
+    if (isCreating) return;
+    setIsCreating(true);
+    const roomId = await createRoom();
+    router.push(`/room/${roomId}`);
+  };
+
+  return (
+    <div className="w-72 mx-auto mt-20 text-center">
+      <h1 className="text-2xl font-bold mb-4">Movie Matcher</h1>
+      <button
+        onClick={handleCreateRoom}
+        disabled={isCreating}
+        className="px-4 py-2 bg-blue-500 text-white rounded-xl shadow-md hover:bg-blue-600"
+        >
+          {isCreating ? "Creating..." : "Create Room"}
+        </button>
+    </div>
   );
-
-  const jsonResults = await Promise.all(
-    responses.map(async (r) =>r.ok ? r.json() : { results: [] }) 
-  );
-  
-  const combined: Movie[] = jsonResults.flatMap((data) => data.results);
-  
-  const validCombined = combined.filter((movie) => movie && movie.id);
-
-  const uniqueMovies = Array.from(
-    new Map(validCombined.map((movie) => [movie.id, movie])).values()
-  );
-
-  const shuffled = uniqueMovies
-    .filter((movie) => movie.poster_path)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 20);
-
-  return <SwipeDeck movies={shuffled} />;
 }

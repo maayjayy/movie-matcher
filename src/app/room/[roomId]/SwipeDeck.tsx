@@ -2,21 +2,33 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion, type PanInfo } from "framer-motion";
-import type { Movie } from "./types";
+import type { Movie } from "@/app/types";
+import { db } from "@/app/lib/firebase";
+import { createRoom, recordSwipe } from "@/app/lib/rooms";
 
 const SWIPE_THRESHOLD = 100;
 
-export default function SwipeDeck({ movies }: { movies: Movie[] }) {
+export default function SwipeDeck({
+  roomId,
+  participantId,
+  movies,
+}: {
+  roomId: string;
+  participantId: string;
+  movies: Movie[];
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [exitDirection, setExitDirection] = useState<"left" | "right" | null>(null);
 
-  const handleSwipe = (direction: "left" | "right") => {
+  const handleSwipe = async (direction: "left" | "right") => {
     const currentMovie = movies[currentIndex];
     console.log(`Swiped ${direction} on ${currentMovie.title}`);
     setExitDirection(direction);
     setCurrentIndex((prev) => prev + 1);
+
+    await recordSwipe(roomId, participantId, currentMovie.id, currentMovie.title, direction);
   };
 
   const handleDragEnd = (
@@ -33,8 +45,8 @@ export default function SwipeDeck({ movies }: { movies: Movie[] }) {
   const currentMovie = movies[currentIndex];
 
   if (!currentMovie) {
-    return <div className="text-6xl text-orange-300 font-semibold min-h-screen flex 
-    items-center justify-center">No more movies!</div>;
+    return <div className="text-6xl text-orange-300 font-semibold min-h-screen flex
+    items-center justify-center">Decisions have been saved, final ones will be revealed soon.</div>;
   }
 
   return (
