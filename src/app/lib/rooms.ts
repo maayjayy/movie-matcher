@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "./firebase";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, updateDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import type { Movie } from "@/app/types";
 
 async function fetchMovieDeck(): Promise<Movie[]> {
@@ -70,6 +70,7 @@ export async function recordSwipe(
     participantId: string,
     movieId: number,
     movieTitle: string,
+    posterPath: string | null,
     direction: "left" | "right"
 ) {
     const swipeRef = doc(db, "rooms", roomId, "swipes", `${participantId}_${movieId}`);
@@ -77,7 +78,13 @@ export async function recordSwipe(
         participantId,
         movieId,
         movieTitle,
+        posterPath,
         direction,
         swipedAt: serverTimestamp(),
     });
+}
+
+export async function markPaticipantFinished(roomId: string, participantId: string) {
+    const participantRef = doc(db, "rooms", roomId, "participants", participantId);
+    await updateDoc(participantRef, { finished: true });
 }

@@ -5,8 +5,8 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import type { Movie } from "@/app/types";
-import { db } from "@/app/lib/firebase";
-import { createRoom, recordSwipe } from "@/app/lib/rooms";
+import { recordSwipe } from "@/app/lib/rooms";
+import { markPaticipantFinished } from "@/app/lib/rooms";
 
 const SWIPE_THRESHOLD = 100;
 
@@ -14,10 +14,12 @@ export default function SwipeDeck({
   roomId,
   participantId,
   movies,
+  onFinished,
 }: {
   roomId: string;
   participantId: string;
   movies: Movie[];
+  onFinished: () => void;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [exitDirection, setExitDirection] = useState<"left" | "right" | null>(null);
@@ -28,7 +30,7 @@ export default function SwipeDeck({
     setExitDirection(direction);
     setCurrentIndex((prev) => prev + 1);
 
-    await recordSwipe(roomId, participantId, currentMovie.id, currentMovie.title, direction);
+    await recordSwipe(roomId, participantId, currentMovie.id, currentMovie.title, currentMovie.poster_path, direction);
   };
 
   const handleDragEnd = (
@@ -44,9 +46,15 @@ export default function SwipeDeck({
 
   const currentMovie = movies[currentIndex];
 
+  useEffect(() => {
+    if (!currentMovie) {
+      markPaticipantFinished(roomId, participantId);
+      onFinished();
+    }
+  }, [currentMovie]);
+
   if (!currentMovie) {
-    return <div className="text-6xl text-orange-300 font-semibold min-h-screen flex
-    items-center justify-center">Decisions have been saved, final ones will be revealed soon.</div>;
+    return null;
   }
 
   return (
