@@ -76,7 +76,7 @@ export default function SwipeDeck({
             }),
           }}
           initial="initial"
-
+          animate="animate"
           exit="exit"
           transition={{ duration: 0.3 }}
           className="absolute inset-0 cursor-grab active:cursor-grabbing"

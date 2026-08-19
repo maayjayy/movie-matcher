@@ -38,15 +38,14 @@ export async function createRoom(): Promise<string> {
 
     const movies = await fetchMovieDeck();
 
-    try {
-        await setDoc(roomRef, {
-            createdAt: serverTimestamp(),
-            movies,
-        });
-        } catch (err) {
-            console.error("Firestore setDoc failed explicitly", err);
-            throw err;
+    if (movies.length === 0) {
+        throw new Error("Failed to fetch movies - TMDB may be down or rate-limited");
     }
+
+    await setDoc(roomRef, {
+        createdAt: serverTimestamp(),
+        movies,
+    });
 
     return roomId;
 }

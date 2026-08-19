@@ -8,7 +8,6 @@ import WaitingForOthers from "./WaitingForOthers";
 import type { Movie } from "../../types";
 import JoinToast from "./JoinToast";
 import CompactStatus from "./CompactStatus";
-import ParticipantList from "./ParticipantList";
 
 export default function JoinRoomScreen({
     roomId,
@@ -43,8 +42,9 @@ export default function JoinRoomScreen({
                 movies={movies} 
                 onFinished={() => setFinishedSwiping(true)}
                 />
-                <CompactStatus roomId={roomId}/>
-                <ParticipantList roomId={roomId}/>
+                <div className="fixed bottom-4 left-1/2 -translate-x-1/2">
+                    <CompactStatus roomId={roomId} />
+                </div>
                 <JoinToast roomId={roomId} currentParticipantId={participantId}/>
             </div>    
         );
