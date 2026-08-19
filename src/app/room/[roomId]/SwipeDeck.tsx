@@ -76,12 +76,12 @@ export default function SwipeDeck({
             }),
           }}
           initial="initial"
-          animate="animate"
+
           exit="exit"
           transition={{ duration: 0.3 }}
           className="absolute inset-0 cursor-grab active:cursor-grabbing"
         >
-          <h2 className="text-lg font-bold">{currentMovie.title}</h2>
+          <h2 className="text-lg font-bold">{currentMovie.title} - {currentMovie.release_date?.slice(0, 4)}</h2>
           {currentMovie.poster_path && (
             <img
               src={`https://image.tmdb.org/t/p/w342${currentMovie.poster_path}`}

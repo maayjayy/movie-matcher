@@ -3,7 +3,7 @@
 
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/app/lib/firebase";
-import JoinRoomScreen from "./joinRoomScreen";
+import JoinRoomScreen from "./JoinRoomScreen";
 
 export default async function RoomPage({
   params,

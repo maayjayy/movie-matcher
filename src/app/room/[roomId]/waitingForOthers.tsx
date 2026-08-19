@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/app/lib/firebase";
-import Podium from "./podium";
+import Podium from "./Podium";
+import ParticipantList from "./ParticipantList";
 
 export default function WaitingForOthers({ roomId }: { roomId: string }) {
     const [participants, setParticipants] = useState<{ finished?: boolean }[]>([]);
@@ -27,6 +28,7 @@ export default function WaitingForOthers({ roomId }: { roomId: string }) {
         <div className="text-4xl text-orange-300 font-semibold min-h-screen flex flex-col items-center justify-center text-center px-4">
             <p>Decisions have been saved.</p>
             <p className="text-2xl mt-4">Waiting for {total - finished} more...</p>
+            <ParticipantList roomId={roomId} />
         </div>
     );
 }

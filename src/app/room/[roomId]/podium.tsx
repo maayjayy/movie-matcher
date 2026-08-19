@@ -30,10 +30,7 @@ export default function Podium({ roomId }: { roomId: string }) {
                 }
             });
 
-            const sorted = Array.from(counts.values())
-                .sort((a, b) => b.count - a.count)
-                .slice(0, 3);
-
+            const sorted = Array.from(counts.values()).sort((a, b) => b.count - a.count);
             setTally(sorted);
         });
 

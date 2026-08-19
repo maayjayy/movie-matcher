@@ -14,20 +14,26 @@ export default function Home() {
   const handleCreateRoom = async () => {
     if (isCreating) return;
     setIsCreating(true);
-    const roomId = await createRoom();
-    router.push(`/room/${roomId}`);
+    try {
+      const roomId = await createRoom();
+      router.push(`/room/${roomId}`);
+    } catch (error) {
+      console.error("Failed to create room:", error);
+      setIsCreating(false);
+    }
   };
 
   return (
-    <div className="w-72 mx-auto mt-20 text-center">
-      <h1 className="text-2xl font-bold mb-4">Movie Matcher</h1>
+    <div className="w-72 mx-auto mt-30 text-center">
+      <h1 className="text-4xl font-bold mb-4">Movie Matcher</h1>
       <button
         onClick={handleCreateRoom}
         disabled={isCreating}
-        className="px-4 py-2 bg-blue-500 text-white rounded-xl shadow-md hover:bg-blue-600"
+        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-xl shadow-md hover:bg-blue-600"
         >
           {isCreating ? "Creating..." : "Create Room"}
         </button>
+      <p className="mt-16 text-center text-l mb-4">Once the room is created, share the link with your mates to join the room and match the same movies</p>
     </div>
   );
 }

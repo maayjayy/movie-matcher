@@ -4,8 +4,11 @@ import { useState } from "react";
 import { joinRoom } from "@/app/lib/rooms";
 import { getOrCreateParticipantId } from "@/app/lib/participants";
 import SwipeDeck from "./SwipeDeck";
-import WaitingForOthers from "./podium"
+import WaitingForOthers from "./WaitingForOthers";
 import type { Movie } from "../../types";
+import JoinToast from "./JoinToast";
+import CompactStatus from "./CompactStatus";
+import ParticipantList from "./ParticipantList";
 
 export default function JoinRoomScreen({
     roomId,
@@ -33,12 +36,17 @@ export default function JoinRoomScreen({
         return finishedSwiping ? (
             <WaitingForOthers roomId={roomId} />
         ) : (
-            <SwipeDeck 
+            <div>
+                <SwipeDeck 
                 roomId={roomId} 
                 participantId={participantId} 
                 movies={movies} 
                 onFinished={() => setFinishedSwiping(true)}
-            />
+                />
+                <CompactStatus roomId={roomId}/>
+                <ParticipantList roomId={roomId}/>
+                <JoinToast roomId={roomId} currentParticipantId={participantId}/>
+            </div>    
         );
     }
 
