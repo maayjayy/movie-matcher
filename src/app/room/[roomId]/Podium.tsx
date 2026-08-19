@@ -41,15 +41,16 @@ export default function Podium({ roomId }: { roomId: string }) {
 
     return (
         <div>
-            <div className="min-h-screen flex items-end justify-center gap-22 pb-36">
-                {topThree[1] && (<PodiumSpot movie={topThree[1]} place={2} height="h-40" bg="bg-blue-700"/>)}
-                {topThree[0] && (<PodiumSpot movie={topThree[0]} place={1} height="h-76" bg="bg-blue-400"/>)}
-                {topThree[2] && (<PodiumSpot movie={topThree[2]} place={3} height="h-20" bg="bg-blue-900"/>)}
+            <div className="min-h-[60vh] flex flex-col items-center justify-center pt-24">
+                <div className="flex items-end justify-center gap-22">
+                    {topThree[1] && (<PodiumSpot movie={topThree[1]} place={2} height="h-40" bg="bg-blue-700"/>)}
+                    {topThree[0] && (<PodiumSpot movie={topThree[0]} place={1} height="h-76" bg="bg-blue-500"/>)}
+                    {topThree[2] && (<PodiumSpot movie={topThree[2]} place={3} height="h-20" bg="bg-blue-900"/>)}
+                </div>
             </div>
-
             {rest.length > 0 && (
                 <>
-                    <div className="flex justify-center -mt-8 mb-4">
+                    <div className="flex justify-center mt-12 mb-4">
                         <a href="#full-rankings" className="text-sm text-gray-200 underline">
                             See full rankings ⬇
                         </a>
@@ -89,7 +90,7 @@ function PodiumSpot({
               alt={movie.movieTitle}
               className="w-full rounded-lg"/>
             <p className="font-bold text-center text-xl mb-2 line-clamp-2">{movie.movieTitle}</p>
-            <p className="text-base text-blue-200 mb-2 font-bold">{movie.count} vote{movie.count !== 1 ? "s" : ""}</p>
+            <p className="text-base text-blue-100 mb-2 font-bold">{movie.count} vote{movie.count !== 1 ? "s" : ""}</p>
             <div className={`w-full ${height} ${bg} rounded-t-2xl flex items-center justify-center text-3xl font-extrabold shadow-lg`}>
                 {place}
             </div>

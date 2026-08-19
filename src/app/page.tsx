@@ -33,7 +33,7 @@ export default function Home() {
         >
           {isCreating ? "Creating..." : "Create Room"}
         </button>
-      <p className="mt-16 text-center text-l mb-4">Once the room is created, share the link with your mates to join the room and match the same movies</p>
+      <p className="mt-16 text-center text-l mb-4 text-gray-400">This will hopefully make your movie nights more bearable. Once the room is created, share the link with your friends and start swiping on movies to match.</p>
     </div>
   );
 }

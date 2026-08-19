@@ -93,10 +93,10 @@ export default function SwipeDeck({
           <div className="flex justify-between mt-2">
             <button onClick={() => handleSwipe("left")}
               className="px-4 py-2 bg-blue-500 text-white rounded-xl shadow-md hover:bg-blue-600 transition"
-              >👎 Pass</button>
+              >Pass</button>
             <button onClick={() => handleSwipe("right")}
               className="px-4 py-2 bg-blue-500 text-white rounded-xl shadow-md hover:bg-blue-600 transition"
-              >👍 Like</button>
+              >Approve</button>
           </div>
           <div>
             <p className="text-sm text-grey-600 text-justify mt-1">{currentMovie.overview}</p>
