@@ -41,8 +41,8 @@ export default function Podium({ roomId }: { roomId: string }) {
 
     return (
         <div>
-            <div className="min-h-[60vh] flex flex-col items-center justify-center pt-24">
-                <div className="flex items-end justify-center gap-22">
+            <div className="min-h-[40vh] flex flex-col items-center justify-start pt-8">
+                <div className="flex items-end justify-center gap-4 sm:gap-10 md:gap-22">
                     {topThree[1] && (<PodiumSpot movie={topThree[1]} place={2} height="h-40" bg="bg-blue-700"/>)}
                     {topThree[0] && (<PodiumSpot movie={topThree[0]} place={1} height="h-76" bg="bg-blue-500"/>)}
                     {topThree[2] && (<PodiumSpot movie={topThree[2]} place={3} height="h-20" bg="bg-blue-900"/>)}
@@ -50,7 +50,7 @@ export default function Podium({ roomId }: { roomId: string }) {
             </div>
             {rest.length > 0 && (
                 <>
-                    <div className="flex justify-center mt-12 mb-4">
+                    <div className="flex justify-center mt-8 mb-4">
                         <a href="#full-rankings" className="text-sm text-gray-200 underline">
                             See full rankings ⬇
                         </a>
@@ -84,7 +84,7 @@ function PodiumSpot({
     bg: string;
 }) {
     return (
-        <div className="flex flex-col items-center w-56 ">
+        <div className="flex flex-col items-center w-32 sm:w-44 md:w-56">
             <img
               src={`https://image.tmdb.org/t/p/w342${movie.posterPath}`}
               alt={movie.movieTitle}
