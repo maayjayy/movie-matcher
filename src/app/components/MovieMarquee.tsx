@@ -30,7 +30,7 @@ export default function MovieMarquee() {
             key={`${src}-${idx}`}
             src={src}
             alt="Movie Poster"
-            className="w-36 h-54 object-cover rounded-xl border border-white/10 shadow-lg shrink-0"
+            className="w-32 h-50 object-cover rounded-xl border border-white/10 shadow-lg shrink-0"
           />
         ))}
       </div>

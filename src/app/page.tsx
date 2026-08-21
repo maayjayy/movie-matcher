@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div className="h-full w-full bg-[#292c5b] text-white flex flex-col justify-between overflow-hidden p-4 sm:p-6">
       <div className="w-full max-w-sm mx-auto my-auto flex flex-col items-center text-center">
-        <h1 className="text-4xl font-black text-white tracking-tight drop-shadow-[0_5px_5px_rgba(100,102,241,0.7)] mb-8">
+        <h1 className="text-5xl font-black text-white tracking-tight drop-shadow-[0_5px_5px_rgba(100,102,241,0.7)] mb-8">
           Movie<span className="text-cyan-500">Matcher</span>
         </h1>
         <button

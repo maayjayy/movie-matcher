@@ -25,7 +25,7 @@ export default function WaitingForOthers({ roomId }: { roomId: string }) {
     }
 
     return (
-        <div className="text-4xl text-orange-300 font-semibold min-h-screen flex flex-col items-center justify-center text-center px-4">
+        <div className="text-4xl text-cyan-400 font-semibold min-h-screen flex flex-col items-center justify-center text-center px-4">
             <p>Decisions have been saved.</p>
             <p className="text-2xl mt-4">Waiting for {total - finished} more {total - finished !== 1 ? "people" : "person"}...</p>
             <ParticipantList roomId={roomId} />

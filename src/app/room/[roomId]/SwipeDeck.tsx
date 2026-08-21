@@ -117,11 +117,11 @@ function SwipeCard({
         <>
           <motion.div
             style={{ opacity: redGlowOpacity }}
-            className="absolute -inset-4 bg-red-500/40 blur-2xl rounded-3xl pointer-events-none z-0"
+            className="absolute -inset-4 bg-red-500/50 blur-2xl rounded-3xl pointer-events-none z-0"
           />
           <motion.div
             style={{ opacity: greenGlowOpacity }}
-            className="absolute -inset-4 bg-emerald-500/40 blur-2xl rounded-3xl pointer-events-none z-0"
+            className="absolute -inset-4 bg-green-500/50 blur-2xl rounded-3xl pointer-events-none z-0"
           />
         </>
       )}
@@ -174,7 +174,7 @@ function SwipeCard({
               onScroll={checkScroll} 
               className="max-h-48 overflow-y-auto custom-scroll pr-2 pb-4"
             >
-              <p className="text-sm text-gray-600 text-justify mt-1">{movie.overview}</p>
+              <p className="text-sm text-gray-200 text-justify mt-1">{movie.overview}</p>
               <p className="text-sm font-semibold mt-1">⭐ {movie.vote_average.toFixed(1)}</p>
             </div>
             {showFade && (

@@ -17,7 +17,7 @@ export default function CompactStatus({ roomId }: { roomId: string }) {
     }, [roomId]);
 
     return (
-        <p className="text-center text-xs font-bold text-orange-300 mt-2">
+        <p className="text-center text-xs font-bold text-cyan-600 mt-2">
             {total} {total !== 1 ? "people are" : "person is"} voting
         </p>
     );

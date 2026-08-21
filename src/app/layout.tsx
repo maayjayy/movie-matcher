@@ -30,7 +30,7 @@ export default function RootLayout({
     >
       <body className="h-full flex flex-col">
         <header className="shrink-0 py-4 px-8">
-          <Link href="/" className="text-3xl font-bold text-white hover:opacity-80 tracking-tight drop-shadow-[0_5px_5px_rgba(99,102,241,0.5)]"> 
+          <Link href="/" className="text-3xl font-bold text-white hover:opacity-80 tracking-tight drop-shadow-[0_5px_5px_rgba(99,102,241,0.7)]"> 
           Movie<span className="text-cyan-500">Matcher</span>
           </Link> 
         </header>

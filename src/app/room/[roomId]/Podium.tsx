@@ -45,7 +45,7 @@ export default function Podium({ roomId }: { roomId: string }) {
                 <div className="flex items-end justify-center gap-4 sm:gap-10 md:gap-22">
                     {topThree[1] && (<PodiumSpot movie={topThree[1]} place={2} height="h-40" bg="bg-blue-700"/>)}
                     {topThree[0] && (<PodiumSpot movie={topThree[0]} place={1} height="h-76" bg="bg-blue-500"/>)}
-                    {topThree[2] && (<PodiumSpot movie={topThree[2]} place={3} height="h-20" bg="bg-blue-900"/>)}
+                    {topThree[2] && (<PodiumSpot movie={topThree[2]} place={3} height="h-20" bg="bg-blue-800"/>)}
                 </div>
             </div>
             {rest.length > 0 && (
@@ -57,7 +57,7 @@ export default function Podium({ roomId }: { roomId: string }) {
                     </div>
 
                     <div id="full-rankings" className="w-72 mx-auto mt-8 mb-12">
-                        <h3 className="font-bold text-lg mb-2 text-center text-orange-300">Movie ranking recap</h3>
+                        <h3 className="font-bold text-lg mb-2 text-center text-cyan-500">Movie ranking recap</h3>
                         <ol className="list-decimal list-inside text-base text-white text-jusitfy">
                             {rest.map((movie) => (
                                 <li key={movie.movieId}>

@@ -27,7 +27,7 @@ export default function ParticipantList({ roomId }: { roomId: string }) {
 
     return (
         <div className="w-72 mx-auto mt-4 text-sm">
-            <p className="font-semibold mb-1 text-orange-300">
+            <p className="font-semibold mb-1 text-cyan-600">
                 {finishedCount} of {total} finished voting
             </p>
             <ul className="flex flex-wrap gap-2">
