@@ -39,12 +39,13 @@
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/maayjayy/movie-matcher.git](https://github.com/maayjayy/movie-matcher.git)
+   git clone https://github.com/maayjayy/movie-matcher.git
    cd movie-matcher
 
 2. Install dependencies: ```npm install```
    
-3. Create a .env.local file in the root directory and add your API keys:
+3. Create a ```.env.local``` file in the root directory and add your API keys:
+    ```
     TMDB_API_KEY=your_tmdb_api_key
     NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
     NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
@@ -52,11 +53,8 @@
     NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
     NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
     NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+    ```
 
 4. Run the development server: ```npm run dev```
 
 5. Open  [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-    
-
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
