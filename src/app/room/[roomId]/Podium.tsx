@@ -42,7 +42,7 @@ export default function Podium({ roomId }: { roomId: string }) {
     return (
         <div>
             <div className="min-h-[40vh] flex flex-col items-center justify-start pt-8">
-                <div className="flex items-end justify-center gap-4 sm:gap-10 md:gap-22">
+                <div className="flex items-end justify-center gap-2 sm:gap-6 md:gap-10 md:gap-22">
                     {topThree[1] && (<PodiumSpot movie={topThree[1]} place={2} height="h-40" bg="bg-blue-700"/>)}
                     {topThree[0] && (<PodiumSpot movie={topThree[0]} place={1} height="h-76" bg="bg-blue-500"/>)}
                     {topThree[2] && (<PodiumSpot movie={topThree[2]} place={3} height="h-20" bg="bg-blue-800"/>)}
@@ -56,9 +56,9 @@ export default function Podium({ roomId }: { roomId: string }) {
                         </a>
                     </div>
 
-                    <div id="full-rankings" className="w-72 mx-auto mt-8 mb-12">
+                    <div id="full-rankings" className="w-full max-w-72 mx-auto mt-8 mb-12 px-4">
                         <h3 className="font-bold text-lg mb-2 text-center text-cyan-500">Movie ranking recap</h3>
-                        <ol className="list-decimal list-inside text-base text-white text-jusitfy">
+                        <ol className="list-decimal list-inside text-base text-white text-justify">
                             {rest.map((movie) => (
                                 <li key={movie.movieId}>
                                     {movie.movieTitle} - {movie.count} vote{movie.count !== 1 ? "s" : ""}
@@ -84,7 +84,7 @@ function PodiumSpot({
     bg: string;
 }) {
     return (
-        <div className="flex flex-col items-center w-32 sm:w-44 md:w-56">
+        <div className="flex flex-col items-center w-24 sm:w-36 md:w-44 lg:w-56">
             <img
               src={`https://image.tmdb.org/t/p/w342${movie.posterPath}`}
               alt={movie.movieTitle}
