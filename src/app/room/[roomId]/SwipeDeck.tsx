@@ -57,17 +57,23 @@ export default function SwipeDeck({
         <SwipeCard
           key={currentMovie.id}
           movie={currentMovie}
+          currentIndex={currentIndex}
+          totalMovies={movies.length}
           onSwipe={handleSwipe}
         />
       </AnimatePresence>
-      </div>
+    </div>
   );
 }
 
 function SwipeCard({
   movie,
+  currentIndex,
+  totalMovies,
   onSwipe,
 }: {
+  currentIndex: number;
+  totalMovies: number;
   movie: Movie;
   onSwipe: (direction: "left" | "right") => void;
 }) {
@@ -113,18 +119,18 @@ function SwipeCard({
 
   return (
       <div className="absolute inset-0">
-      {!isSwipingOut && (
-        <>
-          <motion.div
-            style={{ opacity: redGlowOpacity }}
-            className="absolute -inset-4 bg-red-500/50 blur-2xl rounded-3xl pointer-events-none z-0"
-          />
-          <motion.div
-            style={{ opacity: greenGlowOpacity }}
-            className="absolute -inset-4 bg-green-500/50 blur-2xl rounded-3xl pointer-events-none z-0"
-          />
-        </>
-      )}
+        {!isSwipingOut && (
+          <>
+            <motion.div
+              style={{ opacity: redGlowOpacity }}
+              className="absolute -inset-4 bg-red-500/50 blur-2xl rounded-3xl pointer-events-none z-0"
+            />
+            <motion.div
+              style={{ opacity: greenGlowOpacity }}
+              className="absolute -inset-4 bg-green-500/50 blur-2xl rounded-3xl pointer-events-none z-0"
+            />
+          </>
+        )}
 
         <motion.div
           style={{ x }}
@@ -151,15 +157,25 @@ function SwipeCard({
            }}
           className="absolute inset-0 cursor-grab active:cursor-grabbing"       
         >
-          <h2 className="text-lg font-bold">{movie.title} - {movie.release_date?.slice(0, 4)}</h2>
-          {movie.poster_path && (
-            <img
-              src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
-              alt={movie.title}
-              className="w-full rounded-lg"
-              draggable={false}
-            />
-          )}
+          <div>
+            <h2 className="text-lg font-bold text-white mb-2 leading-tight">
+              {movie.title} - {movie.release_date?.slice(0, 4)}
+            </h2>
+
+            {movie.poster_path && (
+              <div className="relative">
+                <img
+                  src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+                  alt={movie.title}
+                  className="w-full rounded-lg shadow-md"
+                  draggable={false}
+                />
+                <span className="absolute top-2 right-2 z-10 bg-black/45 backdrop-blur-md text-slate-200 text-xs font-bold px-2.5 py-1 rounded-full border border-white/10 shadow-lg">
+                  {currentIndex + 1} / {totalMovies}
+                </span>
+              </div>
+            )}
+          </div>
           <div className="flex justify-between mt-2">
             <button onClick={() => triggerButtonSwipe("left")}
               className="px-4 py-2 bg-blue-500/80 text-white rounded-xl shadow-md hover:bg-red-800 active:scale-95 transition"
