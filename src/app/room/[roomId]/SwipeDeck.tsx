@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useTransform, animate, type PanInfo } from "framer-motion";
 import type { Movie } from "@/app/types";
 import { recordSwipe } from "@/app/lib/rooms";
-import { markPaticipantFinished } from "@/app/lib/rooms";
+import { markParticipantFinished } from "@/app/lib/rooms";
 
 const SWIPE_THRESHOLD = 100;
 
@@ -44,7 +44,7 @@ export default function SwipeDeck({
 
   useEffect(() => {
     if (!currentMovie) {
-      markPaticipantFinished(roomId, participantId);
+      markParticipantFinished(roomId, participantId);
       onFinished();
     }
   }, [currentMovie]);
@@ -52,7 +52,7 @@ export default function SwipeDeck({
   if (!currentMovie) return null;
 
   return (
-    <div className="relative relative w-72 h-96 mx-auto mt-10">
+    <div className="relative w-72 h-96 mx-auto mt-10">
       <AnimatePresence custom={exitDirection} mode="popLayout">
         <SwipeCard
           key={currentMovie.id}
@@ -174,11 +174,11 @@ function SwipeCard({
               onScroll={checkScroll} 
               className="max-h-48 overflow-y-auto custom-scroll pr-2 pb-4"
             >
-              <p className="text-sm text-grey-600 text-justify mt-1">{movie.overview}</p>
+              <p className="text-sm text-gray-600 text-justify mt-1">{movie.overview}</p>
               <p className="text-sm font-semibold mt-1">⭐ {movie.vote_average.toFixed(1)}</p>
             </div>
             {showFade && (
-              <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#050a30] via-[#050a30]/70 to-transparent pointer-events-none transition-opacity duration-300" />
+              <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#292c5b] via-[#292c5b]/70 to-transparent pointer-events-none transition-opacity duration-300" />
             )}
           </div>
         </motion.div>

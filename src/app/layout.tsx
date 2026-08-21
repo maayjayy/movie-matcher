@@ -28,13 +28,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <header className="py-4 px-8">
-          <Link href="/" className="text-2xl font-bold text-orange-300 hover:opacity-80"> 
-          Movie Matcher 🎬
+      <body className="h-full flex flex-col">
+        <header className="shrink-0 py-4 px-8">
+          <Link href="/" className="text-3xl font-bold text-white hover:opacity-80 tracking-tight drop-shadow-[0_5px_5px_rgba(99,102,241,0.5)]"> 
+          Movie<span className="text-cyan-500">Matcher</span>
           </Link> 
         </header>
-        <main className="flex-1">{children}</main> 
+        <main className="flex-1 min-h-0">{children}</main> 
       </body>
     </html>
   );

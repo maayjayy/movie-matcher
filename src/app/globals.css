@@ -16,7 +16,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #050a30;
+    --background: #292c5b;
     --foreground: #ededed;
   }
 }
@@ -32,21 +32,40 @@ body {
   }
 }
 
+/* Scrollbar */
+.custom-scroll {
+  --scrollbar-thumb: rgba(77, 64, 139, 0.4);
+  --scrollbar-track: rgba(19, 17, 26, 0.05);
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
 .custom-scroll::-webkit-scrollbar-track {
-  background: rgba(209, 24, 24, 0.05);
+  background: var(--scrollbar-track);
   border-radius: 9999px;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--scrollbar-thumb);
   border-radius: 9999px;
+  transition: background-color 0.2s ease;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(77, 64, 139, 0.4);
 }
 
-.custom-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(99, 109, 220, 0.4) rgba(255, 255, 255, 0.05);
+/* Custom Infinite Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }

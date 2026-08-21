@@ -33,7 +33,7 @@ async function fetchMovieDeck(): Promise<Movie[]> {
 }
 
 export async function createRoom(): Promise<string> {
-    const roomId = Math.random().toString(36).substring(2, 8);
+    const roomId = Math.random().toString(36).substring(2, 8).toUpperCase();
     const roomRef = doc(db, "rooms", roomId);
 
     const movies = await fetchMovieDeck();
@@ -83,7 +83,7 @@ export async function recordSwipe(
     });
 }
 
-export async function markPaticipantFinished(roomId: string, participantId: string) {
+export async function markParticipantFinished(roomId: string, participantId: string) {
     const participantRef = doc(db, "rooms", roomId, "participants", participantId);
     await updateDoc(participantRef, { finished: true });
 }
